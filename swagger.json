@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+      "title": "CRUD API",
+      "version": "1.0.0",
+      "description": "API for managing customers and magazines"
+  },
+  "paths": {
+      "/api/customers": {
+          "post": {
+              "summary": "Create a new customer",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "name": { "type": "string" },
+                                  "email": { "type": "string" },
+                                  "subscriptionPlan": { "type": "string" },
+                                  "joinedDate": { "type": "string", "format": "date" },
+                                  "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
+                              },
+                              "required": ["name", "email", "subscriptionPlan"]
+                          }
+                      }
+                  },
+                  "responses": {
+                      "201": { "description": "Customer created" },
+                      "400": { "description": "Invalid input" }
+                  }
+              }
+          },
+          "get": {
+              "summary": "Retrieve all customers",
+              "responses": {
+                  "200": {
+                      "description": "A list of customers",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "type": "object",
+                                      "properties": {
+                                          "name": { "type": "string" },
+                                          "email": { "type": "string" },
+                                          "subscriptionPlan": { "type": "string" },
+                                          "joinedDate": { "type": "string", "format": "date" },
+                                          "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "500": { "description": "Server error" }
+              }
+          }
+      },
+      "/api/magazines": {
+          "post": {
+              "summary": "Create a new magazine",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "title": { "type": "string" },
+                                  "publisher": { "type": "string" },
+                                  "genre": { "type": "string" },
+                                  "price": { "type": "number" },
+                                  "releaseDate": { "type": "string", "format": "date" },
+                                  "availableCopies": { "type": "number" }
+                              },
+                              "required": ["title", "publisher", "genre", "price", "releaseDate", "availableCopies"]
+                          }
+                      }
+                  },
+                  "responses": {
+                      "201": { "description": "Magazine created" },
+                      "400": { "description": "Invalid input" }
+                  }
+              },
+              "get": {
+                  "summary": "Retrieve all magazines",
+                  "responses": {
+                      "200": {
+                          "description": "A list of magazines",
+                          "content": {
+                              "application/json": {
+                                  "schema": {
+                                      "type": "array",
+                                      "items": {
+                                          "type": "object",
+                                          "properties": {
+                                              "title": { "type": "string" },
+                                              "publisher": { "type": "string" },
+                                              "genre": { "type": "string" },
+                                              "price": { "type": "number" },
+                                              "releaseDate": { "type": "string", "format": "date" },
+                                              "availableCopies": { "type": "number" }
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      "500": { "description": "Server error" }
+                  }
+              }
+          }
+      }
+  }
+}
