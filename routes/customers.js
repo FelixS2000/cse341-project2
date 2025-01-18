@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all customers
 router.get('/', async (req, res) => {
     try {
-        const customers = await Customer.find().populate('magazinesSubscribed');
+        const customers = await Customer.find(); // Fetch customers directly from the database
         res.json(customers);
     } catch (err) {
         res.status(500).json({ error: 'Server error' });
@@ -23,10 +23,12 @@ router.post(
     ],
     async (req, res) => {
         const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
 
         try {
-            const customer = new Customer(req.body);
+            const customer = new Customer(req.body); // Create a new customer in the database
             await customer.save();
             res.json(customer);
         } catch (err) {

@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all magazines
 router.get('/', async (req, res) => {
     try {
-        const magazines = await Magazine.find();
+        const magazines = await Magazine.find(); // Fetch magazines directly from the database
         res.json(magazines);
     } catch (err) {
         res.status(500).json({ error: 'Server error' });
@@ -23,10 +23,12 @@ router.post(
     ],
     async (req, res) => {
         const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
 
         try {
-            const magazine = new Magazine(req.body);
+            const magazine = new Magazine(req.body); // Create a new magazine in the database
             await magazine.save();
             res.json(magazine);
         } catch (err) {
