@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Customer-Magazine API",
+    "description": "API documentation for managing customers and magazines.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/api/customers": {
+      "get": {
+        "summary": "Get all customers",
+        "tags": ["Customers"],
+        "responses": {
+          "200": {
+            "description": "List of customers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new customer",
+        "tags": ["Customers"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Customer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Customer created"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/api/magazines": {
+      "get": {
+        "summary": "Get all magazines",
+        "tags": ["Magazines"],
+        "responses": {
+          "200": {
+            "description": "List of magazines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Magazine"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new magazine",
+        "tags": ["Magazines"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Magazine"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Magazine created"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "johndoe@example.com"
+          },
+          "subscriptionPlan": {
+            "type": "string",
+            "example": "Monthly"
+          },
+          "joinedDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-01-10"
+          },
+          "magazinesSubscribed": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "678a7144db289ec21f461464"
+            }
+          }
+        }
+      },
+      "Magazine": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Tech Trends"
+          },
+          "publisher": {
+            "type": "string",
+            "example": "Innovative Media"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Technology"
+          },
+          "price": {
+            "type": "number",
+            "example": 5.99
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-01-15"
+          },
+          "availableCopies": {
+            "type": "number",
+            "example": 100
+          }
+        }
+      }
+    }
+  }
+}
