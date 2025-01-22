@@ -100,7 +100,7 @@
                   }
               ],
               "responses": {
-                  "204": { "description": "Customer deleted successfully" },
+                  "204": { "description": "Customer deleted successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
                   "404": { "description": "Customer not found" },
                   "500": { "description": "Server error" }
               }
@@ -203,7 +203,7 @@
                   }
               ],
               "responses": {
-                  "204": { "description": "Magazine deleted successfully" },
+                  "204": { "description": "Magazine deleted successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
                   "404": { "description": "Magazine not found" },
                   "500": { "description": "Server error" }
               }
