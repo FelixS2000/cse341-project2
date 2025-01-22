@@ -10,7 +10,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:5000',
+                url: 'https://cse341-project2-yezt.onrender.com',
             },
         ],
     },
