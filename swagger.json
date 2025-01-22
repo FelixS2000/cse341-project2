@@ -27,8 +27,8 @@
                       }
                   },
                   "responses": {
-                      "201": { "description": "Customer created" },
-                      "400": { "description": "Invalid input" }
+                      "200": { "description": "Customer created" },
+                      "500": { "description": "Invalid input" }
                   }
               }
           },
@@ -57,6 +57,38 @@
                   },
                   "500": { "description": "Server error" }
               }
+          },
+          "put": {
+              "summary": "Update an existing customer",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "name": { "type": "string" },
+                                  "email": { "type": "string" },
+                                  "subscriptionPlan": { "type": "string" },
+                                  "joinedDate": { "type": "string", "format": "date" },
+                                  "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
+                              },
+                              "required": []
+                          }
+                      }
+                  },
+                  "responses": {
+                      "200": { "description": "Customer updated successfully" },
+                      "500": { "description": "Customer not found" }
+                  }
+              }
+          },
+          "delete": {
+              "summary": "Delete a customer",
+              "responses": {
+                  "200": { "description": "Customer deleted successfully" },
+                  "500": { "description": "Customer not found" }
+              }
           }
       },
       "/api/magazines": {
@@ -81,8 +113,8 @@
                       }
                   },
                   "responses": {
-                      "201": { "description": "Magazine created" },
-                      "400": { "description": "Invalid input" }
+                      "200": { "description": "Magazine created" },
+                      "500": { "description": "Invalid input" }
                   }
               }
           },
@@ -111,6 +143,39 @@
                       }
                   },
                   "500": { "description": "Server error" }
+              }
+          },
+          "put": {
+              "summary": "Update an existing magazine",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "title": { "type": "string" },
+                                  "publisher": { "type": "string" },
+                                  "genre": { "type": "string" },
+                                  "price": { "type": "number" },
+                                  "releaseDate": { "type": "string", "format": "date" },
+                                  "availableCopies": { "type": "number" }
+                              },
+                              "required": []
+                          }
+                      }
+                  },
+                  "responses": {
+                      "200": { "description": "Magazine updated successfully" },
+                      "500": { "description": "Magazine not found" }
+                  }
+              }
+          },
+          "delete": {
+              "summary": "Delete a magazine",
+              "responses": {
+                  "200": { "description": "Magazine deleted successfully" },
+                  "500": { "description": "Magazine not found" }
               }
           }
       }
