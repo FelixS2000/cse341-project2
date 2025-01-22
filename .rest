@@ -1,0 +1,35 @@
+### Customers API
+
+# Create a new customer
+POST https://cse341-project2-yezt.onrender.com/api/customers
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "subscriptionPlan": "Monthly",
+  "joinedDate": "2023-01-01",
+  "magazinesSubscribed": ["Magazine A", "Magazine B"]
+}
+
+# Retrieve all customers
+GET https://cse341-project2-yezt.onrender.com/api/customers
+
+
+### Magazines API
+
+# Create a new magazine
+POST https://cse341-project2-yezt.onrender.com/api/magazines
+Content-Type: application/json
+
+{
+  "title": "Tech Monthly",
+  "publisher": "Tech Publishers",
+  "genre": "Technology",
+  "price": 5.99,
+  "releaseDate": "2023-01-01",
+  "availableCopies": 100
+}
+
+# Retrieve all magazines
+GET https://cse341-project2-yezt.onrender.com/api/magazines
