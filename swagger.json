@@ -27,15 +27,16 @@
                       }
                   },
                   "responses": {
-                      "400": { "description": "Customer created" },
-                      "500": { "description": "Invalid input" }
+                      "201": { "description": "Customer created" },
+                      "400": { "description": "Invalid input" },
+                      "500": { "description": "Server error" }
                   }
               }
           },
           "get": {
               "summary": "Retrieve all customers",
               "responses": {
-                  "400": {
+                  "200": {
                       "description": "A list of customers",
                       "content": {
                           "application/json": {
@@ -78,16 +79,19 @@
                       }
                   },
                   "responses": {
-                      "400": { "description": "Customer updated successfully" },
-                      "500": { "description": "Customer not found" }
+                      "200": { "description": "Customer updated successfully" },
+                      "400": { "description": "Invalid input" },
+                      "404": { "description": "Customer not found" },
+                      "500": { "description": "Server error" }
                   }
               }
           },
           "delete": {
               "summary": "Delete a customer",
               "responses": {
-                  "400": { "description": "Customer deleted successfully" },
-                  "500": { "description": "Customer not found" }
+                  "204": { "description": "Customer deleted successfully" },
+                  "404": { "description": "Customer not found" },
+                  "500": { "description": "Server error" }
               }
           }
       },
@@ -113,15 +117,16 @@
                       }
                   },
                   "responses": {
-                      "400": { "description": "Magazine created" },
-                      "500": { "description": "Invalid input" }
+                      "201": { "description": "Magazine created" },
+                      "400": { "description": "Invalid input" },
+                      "500": { "description": "Server error" }
                   }
               }
           },
           "get": {
               "summary": "Retrieve all magazines",
               "responses": {
-                  "400": {
+                  "200": {
                       "description": "A list of magazines",
                       "content": {
                           "application/json": {
@@ -166,16 +171,19 @@
                       }
                   },
                   "responses": {
-                      "400": { "description": "Magazine updated successfully" },
-                      "500": { "description": "Magazine not found" }
+                      "200": { "description": "Magazine updated successfully" },
+                      "400": { "description": "Invalid input" },
+                      "404": { "description": "Magazine not found" },
+                      "500": { "description": "Server error" }
                   }
               }
           },
           "delete": {
               "summary": "Delete a magazine",
               "responses": {
-                  "400": { "description": "Magazine deleted successfully" },
-                  "500": { "description": "Magazine not found" }
+                  "204": { "description": "Magazine deleted successfully" },
+                  "404": { "description": "Magazine not found" },
+                  "500": { "description": "Server error" }
               }
           }
       }
