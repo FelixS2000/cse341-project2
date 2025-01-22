@@ -27,7 +27,7 @@
                       }
                   },
                   "responses": {
-                      "201": { "description": "Customer created" },
+                      "201": { "description": "Customer created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
                       "400": { "description": "Invalid input" },
                       "500": { "description": "Server error" }
                   }
@@ -79,7 +79,7 @@
                       }
                   },
                   "responses": {
-                      "200": { "description": "Customer updated successfully" },
+                      "200": { "description": "Customer updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
                       "400": { "description": "Invalid input" },
                       "404": { "description": "Customer not found" },
                       "500": { "description": "Server error" }
@@ -128,7 +128,7 @@
                       }
                   },
                   "responses": {
-                      "201": { "description": "Magazine created" },
+                      "201": { "description": "Magazine created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
                       "400": { "description": "Invalid input" },
                       "500": { "description": "Server error" }
                   }
@@ -182,7 +182,7 @@
                       }
                   },
                   "responses": {
-                      "200": { "description": "Magazine updated successfully" },
+                      "200": { "description": "Magazine updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
                       "400": { "description": "Invalid input" },
                       "404": { "description": "Magazine not found" },
                       "500": { "description": "Server error" }
