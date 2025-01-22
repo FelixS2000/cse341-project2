@@ -88,6 +88,17 @@
           },
           "delete": {
               "summary": "Delete a customer",
+              "parameters": [
+                  {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID of the customer to delete",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
               "responses": {
                   "204": { "description": "Customer deleted successfully" },
                   "404": { "description": "Customer not found" },
@@ -180,6 +191,17 @@
           },
           "delete": {
               "summary": "Delete a magazine",
+              "parameters": [
+                  {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID of the magazine to delete",
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
               "responses": {
                   "204": { "description": "Magazine deleted successfully" },
                   "404": { "description": "Magazine not found" },
