@@ -63,6 +63,18 @@
           },
           "get": {
               "summary": "Retrieve all customers",
+              "parameters": [
+                  {
+                      "name": "accept",
+                      "in": "header",
+                      "required": true,
+                      "description": "Accept header for application/json",
+                      "schema": {
+                          "type": "string",
+                          "example": "application/json"
+                      }
+                  }
+              ],
               "responses": {
                   "200": {
                       "description": "A list of customers",
