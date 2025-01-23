@@ -76,6 +76,19 @@
                                   "items": {
                                       "$ref": "#/components/schemas/Customer"
                                   }
+                              },
+                              "examples": {
+                                  "example1": {
+                                      "value": [
+                                          {
+                                              "name": "John Doe",
+                                              "email": "john@example.com",
+                                              "subscriptionPlan": "Basic",
+                                              "joinedDate": "2023-01-01",
+                                              "magazinesSubscribed": []
+                                          }
+                                      ]
+                                  }
                               }
                           }
                       }
@@ -83,6 +96,7 @@
                   "500": { "description": "Server error" }
               }
           },
+
           "put": {
               "summary": "Update an existing customer",
               "requestBody": {
@@ -187,6 +201,20 @@
                                   "items": {
                                       "$ref": "#/components/schemas/Magazine"
                                   }
+                              },
+                              "examples": {
+                                  "example1": {
+                                      "value": [
+                                          {
+                                              "title": "Magazine Title",
+                                              "publisher": "Publisher Name",
+                                              "genre": "Genre",
+                                              "price": 5.99,
+                                              "releaseDate": "2023-01-01",
+                                              "availableCopies": 10
+                                          }
+                                      ]
+                                  }
                               }
                           }
                       }
@@ -194,6 +222,7 @@
                   "500": { "description": "Server error" }
               }
           },
+
           "put": {
               "summary": "Update an existing magazine",
               "requestBody": {
