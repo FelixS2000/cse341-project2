@@ -32,9 +32,11 @@ exports.updateMagazine = async (req, res) => {
 exports.deleteMagazine = async (req, res) => {
     try {
         const magazine = await Magazine.findByIdAndDelete(req.params.id);
-        if (!magazine) return res.status(404).send({ error: 'Magazine not found.' });
-        res.status(204).send(); // No content
+        if (!magazine) {
+            return res.status(404).json({ error: 'Magazine not found.' });
+        }
+        res.status(204).send(); // No Content
     } catch (error) {
-        res.status(500).send({ error: 'Server error while deleting magazine.' });
+        res.status(500).json({ error: 'Server error while deleting magazine.' });
     }
 };

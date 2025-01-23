@@ -1,4 +1,4 @@
-const Customer = require('../models/Customer');
+const CustomerModel = require('../models/Customer');
 
 exports.createCustomer = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ exports.createCustomer = async (req, res) => {
             return res.status(400).send({ error: 'Name, email, and subscription plan are required.' });
         }
 
-        const customer = new Customer(req.body);
+        const customer = new CustomerModel(req.body);
         await customer.save();
         res.status(201).send(customer);
     } catch (error) {
@@ -19,7 +19,7 @@ exports.createCustomer = async (req, res) => {
 
 exports.getAllCustomers = async (req, res) => {
     try {
-        const customers = await Customer.find();
+        const customers = await CustomerModel.find();
         res.status(200).send(customers);
     } catch (error) {
         res.status(500).send({ error: 'Server error while retrieving customers.' });
@@ -29,7 +29,7 @@ exports.getAllCustomers = async (req, res) => {
 exports.updateCustomer = async (req, res) => {
     try {
         const { id } = req.params;
-        const customer = await Customer.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+        const customer = await CustomerModel.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
 
         if (!customer) return res.status(404).send({ error: 'Customer not found.' });
         res.send(customer);
@@ -39,13 +39,15 @@ exports.updateCustomer = async (req, res) => {
 };
 
 exports.deleteCustomer = async (req, res) => {
+    const { id } = req.params;
+  
     try {
-        const { id } = req.params;
-        const customer = await Customer.findByIdAndDelete(id);
-
-        if (!customer) return res.status(404).send({ error: 'Customer not found.' });
-        res.status(204).send(); // No content
+      const customer = await CustomerModel.findByIdAndDelete(id);
+      if (!customer) {
+        return res.status(404).json({ message: 'Customer not found' });
+      }
+      res.status(204).send(); // No Content
     } catch (error) {
-        res.status(500).send({ error: 'Server error while deleting customer.' });
+      res.status(500).json({ message: 'Server error', error });
     }
-};
+  };
