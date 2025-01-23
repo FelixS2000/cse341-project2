@@ -15,6 +15,9 @@ Content-Type: application/json
 # Retrieve all customers
 GET https://cse341-project2-yezt.onrender.com/api/customers
 
+PUT https://cse341-project2-yezt.onrender.com/api/customers/id
+
+DELETE https://cse341-project2-yezt.onrender.com/api/customers/id
 
 ### Magazines API
 
@@ -33,3 +36,7 @@ Content-Type: application/json
 
 # Retrieve all magazines
 GET https://cse341-project2-yezt.onrender.com/api/magazines
+
+DELETE https://cse341-project2-yezt.onrender.com/api/magazines/id
+
+PUT https://cse341-project2-yezt.onrender.com/api/magazines/id
