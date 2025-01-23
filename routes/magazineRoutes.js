@@ -5,7 +5,7 @@ const { validateMagazine } = require('../middleware/validate');
 
 /**
  * @swagger
- * /magazines:
+ * /api/magazines:
  *   post:
  *     summary: Create a new magazine
  *     tags: [Magazines]
@@ -32,7 +32,7 @@ router.post('/', validateMagazine, magazineController.createMagazine);
 
 /**
  * @swagger
- * /magazines:
+ * /api/magazines:
  *   get:
  *     summary: Retrieve all magazines
  *     tags: [Magazines]
@@ -44,7 +44,7 @@ router.get('/', magazineController.getAllMagazines);
 
 /**
  * @swagger
- * /magazines/{id}:
+ * /api/magazines/{id}:
  *   put:
  *     summary: Update a magazine by ID
  *     tags: [Magazines]
@@ -80,7 +80,7 @@ router.put('/:id', validateMagazine, magazineController.updateMagazine);
 
 /**
  * @swagger
- * /magazines/{id}:
+ * /api/magazines/{id}:
  *   delete:
  *     summary: Delete a magazine by ID
  *     tags: [Magazines]

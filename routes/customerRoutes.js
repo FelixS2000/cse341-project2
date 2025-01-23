@@ -5,7 +5,7 @@ const { validateCustomer } = require('../middleware/validate');
 
 /**
  * @swagger
- * /customers:
+ * /api/customers:
  *   post:
  *     summary: Create a new customer
  *     tags: [Customers]
@@ -32,7 +32,7 @@ router.post('/', validateCustomer, customerController.createCustomer);
 
 /**
  * @swagger
- * /customers:
+ * /api/customers:
  *   get:
  *     summary: Retrieve all customers
  *     tags: [Customers]
@@ -44,7 +44,7 @@ router.get('/', customerController.getAllCustomers);
 
 /**
  * @swagger
- * /customers/{id}:
+ * /api/customers/{id}:
  *   put:
  *     summary: Update a customer by ID
  *     tags: [Customers]
@@ -80,7 +80,7 @@ router.put('/:id', validateCustomer, customerController.updateCustomer);
 
 /**
  * @swagger
- * /customers/{id}:
+ * /api/customers/{id}:
  *   delete:
  *     summary: Delete a customer by ID
  *     tags: [Customers]

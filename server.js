@@ -13,8 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use('/api/customers', customerRoutes); // Changed from '/api/customers' to '/customers'
-app.use('/api/magazines', magazineRoutes);
+app.use('/api/customers', customerRoutes); // Register customer routes
+app.use('/api/magazines', magazineRoutes); // Register magazine routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 connectToDatabase();
