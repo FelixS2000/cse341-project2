@@ -5,9 +5,6 @@ const { swaggerDocs, swaggerUi } = require('./config/swagger');
 const customerRoutes = require('./routes/customerRoutes');
 const magazineRoutes = require('./routes/magazineRoutes');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-const { swaggerUi, swaggerDocs } = require('./config/swagger');
 const { connectToDatabase } = require('./database/db');
 
 require('dotenv').config();
