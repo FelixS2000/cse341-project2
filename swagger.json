@@ -33,7 +33,7 @@
       }
   },
   "paths": {
-      "/api/customers": {
+      "/customers": {
           "post": {
               "summary": "Create a new customer",
               "requestBody": {
@@ -42,27 +42,24 @@
                       "application/json": {
                           "schema": {
                               "$ref": "#/components/schemas/Customer"
+                          },
+                          "examples": {
+                              "example1": {
+                                  "value": {
+                                      "name": "John Doe",
+                                      "email": "johndoe@example.com",
+                                      "subscriptionPlan": "Monthly"
+                                  }
+                              }
                           }
                       }
                   },
                   "responses": {
-                      "201": { "description": "Customer created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
+                      "201": { "description": "Customer created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
                       "400": { "description": "Invalid input" },
                       "500": { "description": "Server error" }
                   }
-              },
-              "parameters": [
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ]
+              }
           },
           "get": {
               "summary": "Retrieve all customers",
@@ -82,9 +79,9 @@
                                       "value": [
                                           {
                                               "name": "John Doe",
-                                              "email": "john@example.com",
-                                              "subscriptionPlan": "Basic",
-                                              "joinedDate": "2023-01-01",
+                                              "email": "johndoe@example.com",
+                                              "subscriptionPlan": "Monthly",
+                                              "joinedDate": "2023-01-10T00:00:00.000Z",
                                               "magazinesSubscribed": []
                                           }
                                       ]
@@ -95,70 +92,9 @@
                   },
                   "500": { "description": "Server error" }
               }
-          },
-
-          "put": {
-              "summary": "Update an existing customer",
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/Customer"
-                          }
-                      }
-                  },
-                  "responses": {
-                      "200": { "description": "Customer updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
-                      "400": { "description": "Invalid input" },
-                      "404": { "description": "Customer not found" },
-                      "500": { "description": "Server error" }
-                  }
-              },
-              "parameters": [
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ]
-          },
-          "delete": {
-              "summary": "Delete a customer",
-              "parameters": [
-                  {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID of the customer to delete",
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ],
-              "responses": {
-                  "204": { "description": "Customer deleted successfully" },
-                  "404": { "description": "Customer not found" },
-                  "500": { "description": "Server error" }
-              }
           }
       },
-      "/api/magazines": {
+      "/magazines": {
           "post": {
               "summary": "Create a new magazine",
               "requestBody": {
@@ -171,23 +107,11 @@
                       }
                   },
                   "responses": {
-                      "201": { "description": "Magazine created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
+                      "201": { "description": "Magazine created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
                       "400": { "description": "Invalid input" },
                       "500": { "description": "Server error" }
                   }
-              },
-              "parameters": [
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ]
+              }
           },
           "get": {
               "summary": "Retrieve all magazines",
@@ -206,12 +130,12 @@
                                   "example1": {
                                       "value": [
                                           {
-                                              "title": "Magazine Title",
-                                              "publisher": "Publisher Name",
-                                              "genre": "Genre",
+                                              "title": "Tech Trends",
+                                              "publisher": "Innovative Media",
+                                              "genre": "Technology",
                                               "price": 5.99,
-                                              "releaseDate": "2023-01-01",
-                                              "availableCopies": 10
+                                              "releaseDate": "2023-01-15T00:00:00.000Z",
+                                              "availableCopies": 100
                                           }
                                       ]
                                   }
@@ -219,67 +143,6 @@
                           }
                       }
                   },
-                  "500": { "description": "Server error" }
-              }
-          },
-
-          "put": {
-              "summary": "Update an existing magazine",
-              "requestBody": {
-                  "required": true,
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "$ref": "#/components/schemas/Magazine"
-                          }
-                      }
-                  },
-                  "responses": {
-                      "200": { "description": "Magazine updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
-                      "400": { "description": "Invalid input" },
-                      "404": { "description": "Magazine not found" },
-                      "500": { "description": "Server error" }
-                  }
-              },
-              "parameters": [
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ]
-          },
-          "delete": {
-              "summary": "Delete a magazine",
-              "parameters": [
-                  {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID of the magazine to delete",
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "name": "accept",
-                      "in": "header",
-                      "required": true,
-                      "description": "Accept header for application/json",
-                      "schema": {
-                          "type": "string",
-                          "example": "application/json"
-                      }
-                  }
-              ],
-              "responses": {
-                  "204": { "description": "Magazine deleted successfully" },
-                  "404": { "description": "Magazine not found" },
                   "500": { "description": "Server error" }
               }
           }
