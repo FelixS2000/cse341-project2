@@ -12,7 +12,7 @@ const validateCustomer = (req, res, next) => {
         if (!status) {
             res.status(412).send({
                 success: false,
-                message: 'Validation failed',
+                message: 'Validation failed: ' + JSON.stringify(err),
                 data: err
             });
         } else {
@@ -34,7 +34,7 @@ const validateMagazine = (req, res, next) => {
         if (!status) {
             res.status(412).send({
                 success: false,
-                message: 'Validation failed',
+                message: 'Validation failed: ' + JSON.stringify(err),
                 data: err
             });
         } else {

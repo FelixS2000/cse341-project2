@@ -13,7 +13,7 @@ exports.createCustomer = async (req, res) => {
         await customer.save();
         res.status(201).send(customer);
     } catch (error) {
-        res.status(500).send({ error: 'Server error while creating customer.' });
+        res.status(500).send({ error: 'Server error while creating customer: ' + error.message });
     }
 };
 
@@ -22,7 +22,7 @@ exports.getAllCustomers = async (req, res) => {
         const customers = await CustomerModel.find();
         res.status(200).send(customers);
     } catch (error) {
-        res.status(500).send({ error: 'Server error while retrieving customers.' });
+        res.status(500).send({ error: 'Server error while retrieving customers: ' + error.message });
     }
 };
 
@@ -34,7 +34,7 @@ exports.updateCustomer = async (req, res) => {
         if (!customer) return res.status(404).send({ error: 'Customer not found.' });
         res.send(customer);
     } catch (error) {
-        res.status(500).send({ error: 'Server error while updating customer.' });
+        res.status(500).send({ error: 'Server error while updating customer: ' + error.message });
     }
 };
 
@@ -42,12 +42,12 @@ exports.deleteCustomer = async (req, res) => {
     const { id } = req.params;
   
     try {
-      const customer = await CustomerModel.findByIdAndDelete(id);
-      if (!customer) {
-        return res.status(404).json({ message: 'Customer not found' });
-      }
-      res.status(204).send(); // No Content
+        const customer = await CustomerModel.findByIdAndDelete(id);
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+        res.status(204).send(); // No Content
     } catch (error) {
-      res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: 'Server error while deleting customer: ' + error.message });
     }
-  };
+};

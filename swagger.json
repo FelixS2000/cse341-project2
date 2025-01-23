@@ -16,7 +16,7 @@
                   "joinedDate": { "type": "string", "format": "date" },
                   "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
               },
-              "required": ["name", "email", "subscriptionPlan"]
+              "required": ["name", "email", "subscriptionPlan", "joinedDate"]
           },
           "Magazine": {
               "type": "object",

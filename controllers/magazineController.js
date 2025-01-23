@@ -6,7 +6,7 @@ exports.createMagazine = async (req, res) => {
         await magazine.save();
         res.status(201).send(magazine);
     } catch (error) {
-        res.status(400).send({ error: 'Server error while creating magazine.' });
+        res.status(500).send({ error: 'Server error while creating magazine: ' + error.message });
     }
 };
 
@@ -15,7 +15,7 @@ exports.getAllMagazines = async (req, res) => {
         const magazines = await Magazine.find();
         res.status(200).send(magazines);
     } catch (error) {
-        res.status(500).send({ error: 'Server error while retrieving magazines.' });
+        res.status(500).send({ error: 'Server error while retrieving magazines: ' + error.message });
     }
 };
 
@@ -25,7 +25,7 @@ exports.updateMagazine = async (req, res) => {
         if (!magazine) return res.status(404).send({ error: 'Magazine not found.' });
         res.send(magazine);
     } catch (error) {
-        res.status(400).send({ error: 'Server error while updating magazine.' });
+        res.status(500).send({ error: 'Server error while updating magazine: ' + error.message });
     }
 };
 
@@ -37,6 +37,6 @@ exports.deleteMagazine = async (req, res) => {
         }
         res.status(204).send(); // No Content
     } catch (error) {
-        res.status(500).json({ error: 'Server error while deleting magazine.' });
+        res.status(500).json({ error: 'Server error while deleting magazine: ' + error.message });
     }
 };
