@@ -1,26 +1,49 @@
 const validator = require('../helpers/validate');
 
-const saveData = (req, res, next) => {
-  const validationRule = {
-    firstName: 'required|string',
-    lastName: 'required|string',
-    email: 'required|email',
-    favoriteColor: 'required|string',
-    birthday: 'string'
-  };
-  validator(req.body, validationRule, {}, (err, status) => {
-    if (!status) {
-      res.status(412).send({
-        success: false,
-        message: 'Validation failed',
-        data: err
-      });
-    } else {
-      next();
-    }
-  });
+const validateCustomer = (req, res, next) => {
+    const validationRule = {
+        name: 'required|string',
+        email: 'required|email',
+        subscriptionPlan: 'required|string',
+        joinedDate: 'required|string',
+        magazinesSubscribed: 'array'
+    };
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
+const validateMagazine = (req, res, next) => {
+    const validationRule = {
+        title: 'required|string',
+        publisher: 'required|string',
+        genre: 'required|string',
+        price: 'required|numeric',
+        releaseDate: 'required|string',
+        availableCopies: 'required|numeric'
+    };
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
 };
 
 module.exports = {
-  saveData
+    validateCustomer,
+    validateMagazine
 };
