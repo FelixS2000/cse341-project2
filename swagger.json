@@ -1,181 +1,168 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "CRUD API",
-        "version": "1.0.0",
-        "description": "API for managing customers and magazines"
-    },
-    "servers": [
-        {
-            "url": "https://cse341-project2-yezt.onrender.com"
-        }
-    ],
-    "components": {
-        "schemas": {
-            "Customer": {
-                "type": "object",
-                "properties": {
-                    "name": { "type": "string" },
-                    "email": { "type": "string" },
-                    "subscriptionPlan": { "type": "string" },
-                    "joinedDate": { "type": "string", "format": "date" },
-                    "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
-                },
-                "required": ["name", "email", "subscriptionPlan", "joinedDate"]
-            },
-            "Magazine": {
-                "type": "object",
-                "properties": {
-                    "title": { "type": "string" },
-                    "publisher": { "type": "string" },
-                    "genre": { "type": "string" },
-                    "price": { "type": "number" },
-                    "releaseDate": { "type": "string", "format": "date" },
-                    "availableCopies": { "type": "number" }
-                },
-                "required": ["title", "publisher", "genre", "price", "releaseDate", "availableCopies"]
-            }
-        }
-    },
-    "paths": {
-        "/customers": {
-            "post": {
-                "summary": "Create a new customer",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Customer"
-                            },
-                            "examples": {
-                                "example1": {
-                                    "value": {
-                                        "name": "John Doe",
-                                        "email": "johndoe@example.com",
-                                        "subscriptionPlan": "Monthly"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": { "description": "Customer created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
-                    "400": { "description": "Invalid input" },
-                    "500": { "description": "Server error" }
-                }
-            },
-            "get": {
-                "summary": "Retrieve all customers",
-                "parameters": [
-                    {
-                        "name": "accept",
-                        "in": "header",
-                        "required": true,
-                        "description": "Accept header for application/json",
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of customers",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Customer"
-                                    }
-                                },
-                                "examples": {
-                                    "example1": {
-                                        "value": [
-                                            {
-                                                "name": "John Doe",
-                                                "email": "johndoe@example.com",
-                                                "subscriptionPlan": "Monthly",
-                                                "joinedDate": "2023-01-10T00:00:00.000Z",
-                                                "magazinesSubscribed": []
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": { "description": "Server error" }
-                }
-            }
-        },
-        "/magazines": {
-            "post": {
-                "summary": "Create a new magazine",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Magazine"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": { "description": "Magazine created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
-                    "400": { "description": "Invalid input" },
-                    "500": { "description": "Server error" }
-                }
-            },
-            "get": {
-                "summary": "Retrieve all magazines",
-                "parameters": [
-                    {
-                        "name": "accept",
-                        "in": "header",
-                        "required": true,
-                        "description": "Accept header for application/json",
-                        "schema": {
-                            "type": "string",
-                            "example": "application/json"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of magazines",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Magazine"
-                                    }
-                                },
-                                "examples": {
-                                    "example1": {
-                                        "value": [
-                                            {
-                                                "title": "Tech Trends",
-                                                "publisher": "Innovative Media",
-                                                "genre": "Technology",
-                                                "price": 5.99,
-                                                "releaseDate": "2023-01-15T00:00:00.000Z",
-                                                "availableCopies": 100
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": { "description": "Server error" }
-                }
-            }
-        }
-    }
+  "openapi": "3.0.0",
+  "info": {
+      "title": "CRUD API",
+      "version": "1.0.0",
+      "description": "API for managing customers and magazines"
+  },
+  "servers": [
+      {
+          "url": "https://cse341-project2-yezt.onrender.com"
+      }
+  ],
+  "components": {
+      "schemas": {
+          "Customer": {
+              "type": "object",
+              "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "subscriptionPlan": { "type": "string" },
+                  "joinedDate": { "type": "string", "format": "date" },
+                  "magazinesSubscribed": { "type": "array", "items": { "type": "string" } }
+              },
+              "required": ["name", "email", "subscriptionPlan", "joinedDate"]
+          },
+          "Magazine": {
+              "type": "object",
+              "properties": {
+                  "title": { "type": "string" },
+                  "publisher": { "type": "string" },
+                  "genre": { "type": "string" },
+                  "price": { "type": "number" },
+                  "releaseDate": { "type": "string", "format": "date" },
+                  "availableCopies": { "type": "number" }
+              },
+              "required": ["title", "publisher", "genre", "price", "releaseDate", "availableCopies"]
+          }
+      }
+  },
+  "paths": {
+      "/api/customers": {
+          "post": {
+              "summary": "Create a new customer",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/Customer"
+                          },
+                          "examples": {
+                              "example1": {
+                                  "value": {
+                                      "name": "John Doe",
+                                      "email": "johndoe@example.com",
+                                      "subscriptionPlan": "Monthly"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "responses": {
+                      "201": { "description": "Customer created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
+                      "400": { "description": "Invalid input" },
+                      "500": { "description": "Server error" }
+                  }
+              }
+          },
+          "get": {
+              "summary": "Retrieve all customers",
+              "parameters": [
+                  {
+                      "name": "accept",
+                      "in": "header",
+                      "required": true,
+                      "description": "Accept header for application/json",
+                      "schema": {
+                          "type": "string",
+                          "example": "application/json"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "A list of customers",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Customer"
+                                  }
+                              },
+                              "examples": {
+                                  "example1": {
+                                      "value": [
+                                          {
+                                              "name": "John Doe",
+                                              "email": "johndoe@example.com",
+                                              "subscriptionPlan": "Monthly",
+                                              "joinedDate": "2023-01-10T00:00:00.000Z",
+                                              "magazinesSubscribed": []
+                                          }
+                                      ]
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "500": { "description": "Server error" }
+              }
+          }
+      },
+      "/api/magazines": {
+          "post": {
+              "summary": "Create a new magazine",
+              "requestBody": {
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/Magazine"
+                          }
+                      }
+                  },
+                  "responses": {
+                      "201": { "description": "Magazine created successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
+                      "400": { "description": "Invalid input" },
+                      "500": { "description": "Server error" }
+                  }
+              }
+          },
+          "get": {
+              "summary": "Retrieve all magazines",
+              "responses": {
+                  "200": {
+                      "description": "A list of magazines",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Magazine"
+                                  }
+                              },
+                              "examples": {
+                                  "example1": {
+                                      "value": [
+                                          {
+                                              "title": "Tech Trends",
+                                              "publisher": "Innovative Media",
+                                              "genre": "Technology",
+                                              "price": 5.99,
+                                              "releaseDate": "2023-01-15T00:00:00.000Z",
+                                              "availableCopies": 100
+                                          }
+                                      ]
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "500": { "description": "Server error" }
+              }
+          }
+      }
   }
-  
+}
