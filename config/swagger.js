@@ -5,8 +5,8 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'CRUD API',
             version: '1.0.0',
+            description: 'API for managing customers and magazines',
         },
         servers: [
             {
