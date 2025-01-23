@@ -1,4 +1,5 @@
 const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -10,12 +11,13 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'https://cse341-project2-yezt.onrender.com',
+                url: 'https://cse341-project2-yezt.onrender.com/', // Change this to your production URL when deployed
             },
         ],
     },
-    apis: ['./routes/*.js'],
+    apis: ['./routes/*.js'], // Path to the API docs
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-module.exports = swaggerDocs;
+
+module.exports = { swaggerUi, swaggerDocs };

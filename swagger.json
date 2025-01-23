@@ -104,7 +104,7 @@
                   }
               ],
               "responses": {
-                  "204": { "description": "Customer deleted successfully", "content": { "application/json": { "schema": { "type": "object", "example": { "_id": "678a71cadb289ec21f46147e", "name": "Bob Brown", "email": "bobbrown@example.com", "subscriptionPlan": "Annual", "joinedDate": "2023-02-20T00:00:00.000Z", "magazinesSubscribed": ["Science Today", "Photography Life"] } } } } },
+                  "204": { "description": "Customer deleted successfully" },
                   "404": { "description": "Customer not found" },
                   "500": { "description": "Server error" }
               }
@@ -181,7 +181,7 @@
                   }
               ],
               "responses": {
-                  "204": { "description": "Magazine deleted successfully", "content": { "application/json": { "schema": { "type": "object", "example": { "_id": "678a7144db289ec21f461465", "title": "Health Weekly", "publisher": "Wellness Publications", "genre": "Health", "price": 4.99, "releaseDate": "2023-01-22T00:00:00.000Z", "availableCopies": 75 } } } } },
+                  "204": { "description": "Magazine deleted successfully" },
                   "404": { "description": "Magazine not found" },
                   "500": { "description": "Server error" }
               }
