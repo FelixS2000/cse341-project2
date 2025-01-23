@@ -109,6 +109,54 @@
                     },
                     "500": { "description": "Server error" }
                 }
+            },
+            "put": {
+                "summary": "Update an existing customer",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the customer to update",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Customer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Customer updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } },
+                    "404": { "description": "Customer not found" },
+                    "500": { "description": "Server error" }
+                }
+            },
+            "delete": {
+                "summary": "Delete a customer",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the customer to delete",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Customer deleted successfully" },
+                    "404": { "description": "Customer not found" },
+                    "500": { "description": "Server error" }
+                }
             }
         },
         "/api/magazines": {
@@ -172,6 +220,54 @@
                             }
                         }
                     },
+                    "500": { "description": "Server error" }
+                }
+            },
+            "put": {
+                "summary": "Update an existing magazine",
+                "parameters": [
+                    {
+                        "name": "magazineId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the magazine to update",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Magazine"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Magazine updated successfully", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Magazine" } } } },
+                    "404": { "description": "Magazine not found" },
+                    "500": { "description": "Server error" }
+                }
+            },
+            "delete": {
+                "summary": "Delete a magazine",
+                "parameters": [
+                    {
+                        "name": "magazineId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the magazine to delete",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Magazine deleted successfully" },
+                    "404": { "description": "Magazine not found" },
                     "500": { "description": "Server error" }
                 }
             }
