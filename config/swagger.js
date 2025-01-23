@@ -10,7 +10,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'https://cse341-project2-yezt.onrender.com/api-docs/',
+                url: 'https://cse341-project2-yezt.onrender.com/',
             },
         ],
     },
