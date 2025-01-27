@@ -1,15 +1,18 @@
 const CustomerModel = require('../models/Customer');
+const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 
 exports.createCustomer = async (req, res) => {
     try {
-        const { name, email, subscriptionPlan } = req.body;
+        const { name, email, password, subscriptionPlan } = req.body;
 
         // Validate input
-        if (!name || !email || !subscriptionPlan) {
-            return res.status(400).send({ error: 'Name, email, and subscription plan are required.' });
+        if (!name || !email || !password || !subscriptionPlan) {
+            return res.status(400).send({ error: 'Name, email, password, and subscription plan are required.' });
         }
 
-        const customer = new CustomerModel(req.body);
+        // Hash the password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const customer = new CustomerModel({ name, email, password: hashedPassword, subscriptionPlan });
         await customer.save();
         res.status(201).send(customer);
     } catch (error) {
@@ -50,4 +53,35 @@ exports.deleteCustomer = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error while deleting customer: ' + error.message });
     }
+};
+
+// New methods for login and logout
+exports.loginCustomer = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const customer = await CustomerModel.findOne({ email });
+        if (!customer) {
+            return res.status(401).send({ error: 'Invalid email or password.' });
+        }
+
+        const isMatch = await bcrypt.compare(password, customer.password);
+        if (!isMatch) {
+            return res.status(401).send({ error: 'Invalid email or password.' });
+        }
+
+        req.session.user = customer; // Store user in session
+        res.status(200).send({ message: 'Login successful', customer });
+    } catch (error) {
+        res.status(500).send({ error: 'Server error during login: ' + error.message });
+    }
+};
+
+exports.logoutCustomer = (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).send({ error: 'Could not log out.' });
+        }
+        res.status(200).send({ message: 'Logout successful' });
+    });
 };

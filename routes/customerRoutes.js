@@ -5,6 +5,72 @@ const { validateCustomer } = require('../middleware/validate');
 
 /**
  * @swagger
+ * /api/customers/register:
+ *   post:
+ *     summary: Register a new customer
+ *     tags: [Customers]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               subscriptionPlan:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Customer registered successfully
+ *       400:
+ *         description: Invalid input
+ */
+router.post('/register', customerController.createCustomer);
+
+/**
+ * @swagger
+ * /api/customers/login:
+ *   post:
+ *     summary: Login a customer
+ *     tags: [Customers]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *       401:
+ *         description: Invalid email or password
+ */
+router.post('/login', customerController.loginCustomer);
+
+/**
+ * @swagger
+ * /api/customers/logout:
+ *   post:
+ *     summary: Logout a customer
+ *     tags: [Customers]
+ *     responses:
+ *       200:
+ *         description: Logout successful
+ */
+router.post('/logout', customerController.logoutCustomer);
+
+/**
+ * @swagger
  * /api/customers:
  *   post:
  *     summary: Create a new customer
