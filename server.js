@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const { swaggerDocs, swaggerUi } = require('./config/swagger');
 const customerRoutes = require('./routes/customerRoutes');
 const magazineRoutes = require('./routes/magazineRoutes');
-
+const passport = require('passport');
+const session = require('express-session');
 const { connectToDatabase } = require('./database/db');
 
 require('dotenv').config();

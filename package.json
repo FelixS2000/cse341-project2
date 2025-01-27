@@ -4,7 +4,9 @@
     "cse341-project2": "file:",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
     "mongoose": "^8.9.5",
+    "passport": "^0.7.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "validatorjs": "^3.22.1"
