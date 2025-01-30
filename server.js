@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 // Set up session management
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your_secret_key', // Use a secure secret
+    secret: process.env.SESSION_SECRET || 'd7482b6b477dd8a4d71b14c1076771c4e8e7cf42', // Use a secure secret
     resave: false,
     saveUninitialized: true,
 }));
