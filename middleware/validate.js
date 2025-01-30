@@ -21,6 +21,24 @@ const validateCustomer = (req, res, next) => {
     });
 };
 
+const validateLogin = (req, res, next) => {
+    const validationRule = {
+        email: 'required|email',
+        password: 'required|string'
+    };
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed: ' + JSON.stringify(err),
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
 const validateMagazine = (req, res, next) => {
     const validationRule = {
         title: 'required|string',
@@ -45,5 +63,6 @@ const validateMagazine = (req, res, next) => {
 
 module.exports = {
     validateCustomer,
+    validateLogin, 
     validateMagazine
 };
